@@ -1,0 +1,58 @@
+﻿@model Product
+@inject ISupplierRepository repo
+@{
+    ViewData["Title"] = "Update";
+    var supplier = repo.GetAll();
+    SelectList items = new SelectList(supplier , nameof(Supplier.SupplierID) , nameof(Supplier.SupplierName) );
+}
+
+<h1>Update @Model.productName</h1>
+<form class="container" asp-action="update" method="post">
+    <div class="container mt-3">
+        <label asp-for="@Model.productId" hidden></label>
+        <input asp-for="@Model.productId" class="form-control" hidden />
+    </div>
+    <div class="container mt-3">
+        <label asp-for="@Model.productName"></label>
+        <input type="text" class="form-control" asp-for="@Model.productName" />
+        <span class="text-danger" asp-validation-for="@Model.productName"></span>
+    </div>
+    <div class="container mt-3">
+        <label asp-for="@Model.QuentityPerUnit"></label>
+        <input asp-for="@Model.QuentityPerUnit" class="form-control" />
+        <span asp-validation-for="@Model.QuentityPerUnit" class="text-danger"></span>
+
+    </div>
+    <div class="container mt-3">
+        <label asp-for="@Model.ReorderLevel"></label>
+        <input  class="form-control" asp-for="@Model.ReorderLevel" />
+        <span asp-validation-for="@Model.ReorderLevel" class="text-danger"></span>
+    </div>
+    <div class="container mt-3">
+        <label asp-for="@Model.unitInStock"></label>
+        <input class="form-control" asp-for="@Model.unitInStock" />
+        <span asp-validation-for="@Model.unitInStock" class="text-danger"></span>
+    </div>
+    <div class="container mt-3">
+        <label asp-for="@Model.UnitsInOrder"></label>
+        <input  class="form-control" asp-for="@Model.UnitsInOrder" />
+        <span asp-validation-for="@Model.UnitsInOrder" class="text-danger"></span>
+    </div>
+    <div class="container mt-3">
+        <label asp-for="@Model.SupplierID"></label>
+        <select asp-items="items" asp-for="@Model.SupplierID"  class=" form-control">
+            <option value="-1">
+                -- select Supplier --
+            </option>
+        </select>
+    </div>
+    <div class="container text-center ">
+        <input type="submit" class="btn btn-success m-3 w-25" value="Save Changes" />
+        <a class="btn btn-warning w-25 m-3" asp-action="Index">Back</a>
+    </div>
+</form>
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

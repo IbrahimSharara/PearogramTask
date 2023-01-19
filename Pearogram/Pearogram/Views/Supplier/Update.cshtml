@@ -1,0 +1,27 @@
+﻿@model Supplier
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update @Model.SupplierName</h1>
+<form class="form-control" asp-action="Update" method="post">
+    <div class="container">
+        <label asp-for="SupplierID" hidden></label>
+        <input asp-for="SupplierID" class="form-control" hidden />
+    </div>
+    <div class="container mt-3">
+        <label asp-for="SupplierName" hidden></label>
+        <input asp-for="SupplierName" class="form-control" />
+        <span class="text-danger" asp-validation-for="SupplierName"></span>
+    </div>
+    <div class="container text-center ">
+        <input class="btn btn-success w-25 m-3" value="Save Changes" type="submit" />
+        <a class="btn btn-warning w-25 m-3" asp-action="Index">Back</a>
+    </div>
+</form>
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
